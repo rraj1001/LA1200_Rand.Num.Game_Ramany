@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Random_num._Game
+namespace Random_num.Gamme_01
 {
     class Program
     {
@@ -10,44 +10,59 @@ namespace Random_num._Game
             Random num = new Random();
             int tries = 0;
             int Geheimzahl = num.Next(1, 100);
-            int guess = 0;
             bool correct = false;
 
-            Console.WriteLine("Nenne eine Zahl zwischen 1 und 100");
+
+
+
+
 
             while (!correct)
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Nenne eine Zahl zwischen 1 und 100");
                 Console.Write("Rate: ");
-                string userinput = Console.ReadLine();
+                int userinput = Convert.ToInt32(Console.ReadLine());
 
-                if (int.TryParse(userinput, out guess))
+                if (userinput > 1 || userinput < 100)
                 {
                     tries++;
-                } else
+                }
+                else
                 {
-                 Console.WriteLine("Falsch");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Falsch");
 
                 }
 
-                if (guess < Geheimzahl)
+                if (userinput < Geheimzahl)
                 {
-                    Console.WriteLine("Nein, die Nummer ist hocher als deine Zahl");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Nein, die Nummer ist grösser als deine Zahl");
                 }
-                else if (guess > Geheimzahl)
+                else if (userinput > Geheimzahl)
                 {
-                    Console.WriteLine("Nein, die Nummer ist tiefer als deine Zahl");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Nein, die Nummer ist kleiner als deine Zahl");
                 }
                 else
                 {
                     correct = true;
+                    Console.ForegroundColor = ConsoleColor.Green;
+
                     Console.WriteLine("Du hast Richtig geraten!");
-                    Console.WriteLine("Du brauchtestn nur " + tries + " Versuche"); 
+                    Console.WriteLine("Du brauchtestn nur " + tries + " Versuche");
                 }
-                
 
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                if (userinput > 100 || userinput < 1)
+                    Console.WriteLine("Eingabe darf nicht unter 1 und über 100 sein!!!");
+                Console.ForegroundColor = ConsoleColor.Green;
 
+                Console.WriteLine("------------------------------------------------");
 
             }
+            Console.ForegroundColor = ConsoleColor.Green;
 
 
         }
